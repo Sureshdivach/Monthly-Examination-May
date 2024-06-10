@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="main_container">
+        <nav>
+            <div class="nav_logo">
+                <img src="https://www.pngitem.com/pimgs/m/30-303730_sk-love-logo-png-transparent-png.png" alt="">
+            </div>
+            <div class="nav_link">
+                <ul>
+                    <li><a href="# nav_logo" target="_blank">HOME</a></li>
+                    <li><a href="#social_icon">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="menu_icon">
+                <span>&#x2261;</span>
+            </div>
+        </nav>
+        <div class="hero_section">
+            <img src="https://insight.openexo.com/content/images/2023/06/kentlangley_imagine_a_modern_vibrant_classroom_setting._At_the__32d6c009-8b6e-41fc-ab15-0417b4c8efd6.png"
+                alt="">
+        </div>
+        <div class="form_main_div">
+            <div id="form_div">
+                <form id="form">
+                    <h1>Registration form</h1>
+                    <label for="">Name <span>*</span> <br> <input type="text" id="name" required></label><br><br>
+                    <label for="">Email <span>*</span> <br> <input type="email" id="email" required></label><br><br>
+                    <label for="">Course <span>*</span></label><br> <select name="" id="course">
+                        <option value="">select</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                    </select>
+                    <div id="submit"><button id="submit">Submit</button></div>
+                </form>
+            </div>
+            <div id="table_div">
+            </div>
+        </div>
+        <footer class=" footer_main_div">
+            <div class="first_main_div">
+
+                <div class="logo_div">
+                    <img src="./image/sk png logo.png" alt=""><br>
+                    <h3>About Us</h3>
+                    <hr><br>
+                    <!-- <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit.
+                    </p><br>
+                    <p>fusce in nisl amet risus eleifend commodo.sed vel ex eu lectus vestibulum efficitur</p> -->
+                    <p>The SK Group has been an integral part of the Indian pharmaceutical industry since 1932. We are a family business comprising several leading firms of the pharmaceutical industry in India. Headquartered in Mumbai, our facilities are present throughout India and our reach extends to countries all over the world.</p>
+                </div>
+
+                <div class="links_div">
+                    <h3>Quick Links</h3>
+                    <hr>
+                    <ul>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Services</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="social_icon">
+                    <h3>Contact Us</h3>
+                    <hr><br>
+                    <p>Address:Shree Ram Rd,
+                        <br>Lalkothi,jaipur,Rajasthan 302015
+                    </p><br>
+                    <p>Phone:0141-2222222</p><br>
+                    <p>Email:info@example.com</p>
+
+                    <span><a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
+                        <a href="https://twitter.com/?lang=en"target= "_blank" class="fa fa-twitter"></a>
+
+                        <a href="https://www.instagram.com/meta/" target="_blank" class="fa fa-instagram"></a>
+                        <a href="https://www.google.com" target="_blank" class="fa fa-google"></a>
+                        <a href="https://www.linkedin.com" target="_blank" class="fa fa-linkedin"></a>
+                        <a href="https://www.youtube.com" target="_blank" class="fa fa-youtube"></a>
+                     
+                    </span>
+                </div>
+            </div>
+
+            <div class="second_main_div">
+                <p>&copy2024 Suresh Kumar | All Rights Reserved</p>
+            </div>
+        </footer>
+
+
+
+
+
+
+    </div>
+
+</body>
+
+<script>
+    let arr = JSON.parse(localStorage.getItem("userdata")) || []
+    let form = document.getElementById('form');
+    let submit = document.getElementById('submit');
+    submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        let obj = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            course: document.getElementById('course').value
+        }
+        arr.push(obj);
+        localStorage.setItem("userData", JSON.stringify(arr))
+        dataDisplay(arr)
+        console.log(arr);
+        form.reset();
+    })
+    function dataDisplay(data) {
+        let table_div = document.getElementById("table_div")
+        let table = document.createElement('table');
+        let thead = document.createElement("thead")
+        let tr = document.createElement('tr');
+        let th1 = document.createElement('th');
+        th1.innerText = "S.No."
+        let th2 = document.createElement('th');
+        th2.innerText = "Name"
+        let th3 = document.createElement('th');
+        th3.innerText = "Email"
+        let th4 = document.createElement('th')
+        th4.innerText = "Course"
+        tr.append(th1, th2, th3, th4)
+        thead.append(tr)
+        table.append(thead)
+
+
+        let index = 1;
+        data.forEach((ele) => {
+            table_div.innerHTML = ""
+            let tbody = document.createElement("tbody")
+            let tr1 = document.createElement('tr');
+            let td1 = document.createElement('td');
+            td1.innerText = index++
+            let td2 = document.createElement('td');
+            td2.innerText = ele.name
+            let td3 = document.createElement('td');
+            td3.innerText = ele.email
+            let td4 = document.createElement('td');
+            td4.innerText = ele.course
+            tr1.append(td1, td2, td3, td4)
+            tbody.append(tr1)
+            table.append(tbody)
+
+        })
+        table_div.append(table)
+    }
+    dataDisplay(arr)
+
+</script>
+
+</html>
